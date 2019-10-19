@@ -1,0 +1,97 @@
+---
+swagger: "2.0"
+info:
+  title: "IHRM API"
+  description: "Imbus HRM API..."
+  deepLinking: false
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+
+paths:
+  /users/bye/{name}:
+    get:
+      summary: Say bye to user .
+      security:
+        - Bearer: []
+      produces:
+        - application/json
+        - text/plain
+      parameters:
+        - in: path
+          name: name
+          required: false
+          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "bacem"
+
+
+        403:
+          description: API key is missing or invalid
+          headers:
+            Authorization:
+              type: string
+
+
+
+
+  /home/login:
+    post:
+      summary: provides token to authenticated user.
+      produces:
+        - application/json
+        - text/plain
+      parameters:
+        - in: query
+          name: username
+          required: false
+          type: string
+
+        - in: query
+          name: password
+          required: false
+          type: string
+
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "token"
+
+ /roles/ :
+   get:
+     summary:  get all App roles .
+       produces:
+         - application/json
+         - text/plain
+
+
+
+       responses:
+         200:
+           description: OK
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+                 example: "[roles]"
